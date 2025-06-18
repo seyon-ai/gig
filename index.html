@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GIG Site God Lv</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    html, body { height: 100%; color: white; overflow-x: hidden; scroll-behavior: smooth; }
+    video.bg { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; object-fit: cover; z-index: -1; }
+
+    section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
+    h1 { font-size: 3rem; text-shadow: 0 0 10px cyan; }
+    p { font-size: 1.3rem; margin: 10px 0; }
+    .btn { padding: 12px 24px; margin-top: 20px; font-size: 1rem; background: cyan; color: black; border: none; border-radius: 8px; cursor: pointer; }
+    .btn:hover { background: #00ffee; }
+
+    .product-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1rem; }
+    .product { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; width: 200px; text-align: center; }
+    .cart { position: fixed; top: 1rem; right: 1rem; background: rgba(0,0,0,0.7); padding: 1rem; border: 1px solid cyan; border-radius: 10px; max-width: 200px; }
+    .chatbox { background: rgba(0,0,0,0.6); border: 1px solid cyan; padding: 1rem; border-radius: 10px; max-width: 600px; width: 90%; }
+    .messages { height: 200px; overflow-y: auto; margin-bottom: 1rem; }
+    .msg { margin-bottom: 10px; }
+    .user { color: #00f7ff; }
+    .bot { color: #ff00c8; }
+    input[type="text"] { width: 80%; padding: 10px; border-radius: 5px; border: none; margin-right: 10px; }
+    .chat-submit { padding: 10px; border: none; border-radius: 5px; background: cyan; color: black; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<video class="bg" autoplay muted loop>
+  <source src="bg-video.mp4" type="video/mp4">
+</video>
+
+<!-- Welcome -->
+<section>
+  <h1>Welcome</h1>
+  <button class="btn" onclick="scrollToPage(1)">Get Started</button>
+</section>
+
+<!-- We Build Everything -->
+<section>
+  <h1>🔥 We Build All Types of Websites 🔥</h1>
+  <p>Let’s explore together</p>
+  <button class="btn" onclick="scrollToPage(2)">Next</button>
+</section>
+
+<!-- E-commerce Store -->
+<section id="ecommerce">
+  <h1>🛒 Demo E-Commerce Store</h1>
+  <div class="product-grid">
+    <div class="product">
+      <p>Product A</p>
+      <button class="btn" onclick="addToCart('Product A')">Add to Cart</button>
+    </div>
+    <div class="product">
+      <p>Product B</p>
+      <button class="btn" onclick="addToCart('Product B')">Add to Cart</button>
+    </div>
+    <div class="product">
+      <p>Product C</p>
+      <button class="btn" onclick="addToCart('Product C')">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<!-- Cart -->
+<div class="cart">
+  <h3>🧺 Cart</h3>
+  <ul id="cartList"></ul>
+</div>
+
+<!-- AI Chatbot -->
+<section>
+  <h1>🤖 AI Chatbot</h1>
+  <div class="chatbox">
+    <div class="messages" id="messages"></div>
+    <div>
+      <input type="text" id="userInput" placeholder="Ask something..." />
+      <button class="chat-submit" onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</section>
+
+<!-- Extra Sample Pages -->
+<section><h1>📱 App UI</h1><p>Modern design preview</p></section>
+<section><h1>📊 Analytics</h1><p>Live data panel concept</p></section>
+<section><h1>🎮 Game Preview</h1><p>Gaming landing UI</p></section>
+<section><h1>📃 Blog Page</h1><p>Latest post sample</p></section>
+<section><h1>📞 Contact</h1><p>Reach our team</p></section>
+
+<!-- Goodbye -->
+<section>
+  <h1>👋 Goodbye</h1>
+  <p>Thanks for exploring this GIG</p>
+</section>
+
+<script>
+  const sections = document.querySelectorAll("section");
+  function scrollToPage(index) {
+    if (sections[index]) {
+      sections[index].scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  let cart = [];
+  function addToCart(product) {
+    cart.push(product);
+    updateCart();
+  }
+
+  function updateCart() {
+    const cartList = document.getElementById('cartList');
+    cartList.innerHTML = '';
+    cart.forEach((item, i) => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      cartList.appendChild(li);
+    });
+  }
+
+  function sendMessage() {
+    const input = document.getElementById("userInput");
+    const msgBox = document.getElementById("messages");
+
+    if (!input.value) return;
+
+    const userMsg = document.createElement("div");
+    userMsg.className = "msg user";
+    userMsg.textContent = "You: " + input.value;
+    msgBox.appendChild(userMsg);
+
+    const botMsg = document.createElement("div");
+    botMsg.className = "msg bot";
+    
+    const responses = {
+      "hi": "Hello there!",
+      "what can you do": "I can simulate an AI chatbot, and show web previews!",
+      "who are you": "I’m your GIG-level assistant bot 😎",
+      "bye": "Goodbye! See you soon.",
+    };
+
+    let reply = responses[input.value.toLowerCase()] || "I'm still learning... 🤖";
+    setTimeout(() => {
+      botMsg.textContent = "Bot: " + reply;
+      msgBox.appendChild(botMsg);
+      msgBox.scrollTop = msgBox.scrollHeight;
+    }, 500);
+
+    input.value = '';
+  }
+</script>
+
+</body>
+</html>
