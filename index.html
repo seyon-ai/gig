@@ -2,29 +2,324 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>GIG Site God Lv</title>
+  <title>GIG Site God Lv - Premium Experience</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    html, body { height: 100%; color: white; overflow-x: hidden; scroll-behavior: smooth; }
-    video.bg { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; object-fit: cover; z-index: -1; }
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      font-family: 'Segoe UI', sans-serif; 
+    }
+    html, body { 
+      height: 100%; 
+      color: white; 
+      overflow-x: hidden; 
+      scroll-behavior: smooth; 
+    }
+    video.bg { 
+      position: fixed; 
+      right: 0; 
+      bottom: 0; 
+      min-width: 100%; 
+      min-height: 100%; 
+      object-fit: cover; 
+      z-index: -1; 
+    }
 
-    section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
-    h1 { font-size: 3rem; text-shadow: 0 0 10px cyan; }
-    p { font-size: 1.3rem; margin: 10px 0; }
-    .btn { padding: 12px 24px; margin-top: 20px; font-size: 1rem; background: cyan; color: black; border: none; border-radius: 8px; cursor: pointer; }
-    .btn:hover { background: #00ffee; }
+    section { 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      padding: 2rem; 
+      background-color: rgba(0,0,0,0.5); 
+      backdrop-filter: blur(4px); 
+      transition: all 0.5s ease;
+    }
+    section:hover {
+      background-color: rgba(0,0,0,0.6);
+    }
+    h1 { 
+      font-size: 3rem; 
+      text-shadow: 0 0 10px cyan; 
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    p { 
+      font-size: 1.3rem; 
+      margin: 10px 0; 
+      max-width: 800px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .btn { 
+      padding: 12px 24px; 
+      margin-top: 20px; 
+      font-size: 1rem; 
+      background: cyan; 
+      color: black; 
+      border: none; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
+    .btn:hover { 
+      background: #00ffee; 
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+    }
 
-    .product-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1rem; }
-    .product { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; width: 200px; text-align: center; }
-    .cart { position: fixed; top: 1rem; right: 1rem; background: rgba(0,0,0,0.7); padding: 1rem; border: 1px solid cyan; border-radius: 10px; max-width: 200px; }
-    .chatbox { background: rgba(0,0,0,0.6); border: 1px solid cyan; padding: 1rem; border-radius: 10px; max-width: 600px; width: 90%; }
-    .messages { height: 200px; overflow-y: auto; margin-bottom: 1rem; }
-    .msg { margin-bottom: 10px; }
-    .user { color: #00f7ff; }
-    .bot { color: #ff00c8; }
-    input[type="text"] { width: 80%; padding: 10px; border-radius: 5px; border: none; margin-right: 10px; }
-    .chat-submit { padding: 10px; border: none; border-radius: 5px; background: cyan; color: black; cursor: pointer; }
+    .product-grid { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 1.5rem; 
+      justify-content: center; 
+      margin: 2rem 0; 
+      max-width: 1200px;
+    }
+    .product { 
+      background: rgba(255,255,255,0.1); 
+      padding: 1.5rem; 
+      border-radius: 10px; 
+      width: 220px; 
+      text-align: center; 
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+    }
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+      background: rgba(255,255,255,0.15);
+    }
+    .cart { 
+      position: fixed; 
+      top: 1rem; 
+      right: 1rem; 
+      background: rgba(0,0,0,0.7); 
+      padding: 1rem; 
+      border: 1px solid cyan; 
+      border-radius: 10px; 
+      max-width: 250px;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+    .cart:hover {
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+    .chatbox { 
+      background: rgba(0,0,0,0.6); 
+      border: 1px solid cyan; 
+      padding: 1.5rem; 
+      border-radius: 10px; 
+      max-width: 600px; 
+      width: 90%; 
+      margin: 1rem 0;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+    }
+    .messages { 
+      height: 300px; 
+      overflow-y: auto; 
+      margin-bottom: 1rem; 
+      padding: 10px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 5px;
+    }
+    .msg { 
+      margin-bottom: 15px; 
+      padding: 8px 12px;
+      border-radius: 5px;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .user { 
+      color: #00f7ff; 
+      background: rgba(0, 247, 255, 0.1);
+      border-left: 3px solid #00f7ff;
+    }
+    .bot { 
+      color: #ff00c8; 
+      background: rgba(255, 0, 200, 0.1);
+      border-left: 3px solid #ff00c8;
+    }
+    input[type="text"] { 
+      width: 75%; 
+      padding: 12px; 
+      border-radius: 5px; 
+      border: none; 
+      margin-right: 10px; 
+      background: rgba(255,255,255,0.9);
+      color: #000;
+    }
+    .chat-submit { 
+      padding: 12px 20px; 
+      border: none; 
+      border-radius: 5px; 
+      background: cyan; 
+      color: black; 
+      cursor: pointer; 
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .chat-submit:hover {
+      background: #00ffee;
+      transform: translateY(-2px);
+    }
+    
+    /* Battle Royale Game Styles */
+    .game-container {
+      width: 100%;
+      max-width: 800px;
+      height: 500px;
+      background: rgba(0,0,0,0.7);
+      border: 2px solid cyan;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    
+    .player {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: cyan;
+      border-radius: 50%;
+      z-index: 10;
+      transition: all 0.2s ease;
+    }
+    
+    .enemy {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: #ff00c8;
+      border-radius: 50%;
+      z-index: 5;
+    }
+    
+    .weapon {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #00ff88;
+      border-radius: 50%;
+      z-index: 3;
+    }
+    
+    .safe-zone {
+      position: absolute;
+      border: 2px dashed #00ff88;
+      border-radius: 50%;
+      z-index: 2;
+    }
+    
+    .storm {
+      position: absolute;
+      background: rgba(255, 100, 0, 0.3);
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .game-stats {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: 1rem;
+    }
+    
+    .stat {
+      background: rgba(0,0,0,0.7);
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      border: 1px solid cyan;
+    }
+    
+    /* Navigation Dots */
+    .nav-dots {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 50;
+    }
+    
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .dot.active {
+      background: cyan;
+      transform: scale(1.3);
+    }
+    
+    /* Floating Particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(0, 255, 255, 0.5);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1.1rem;
+      }
+      .cart {
+        max-width: 200px;
+        font-size: 0.9rem;
+      }
+      .nav-dots {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -33,124 +328,312 @@
   <source src="bg-video.mp4" type="video/mp4">
 </video>
 
+<div class="particles" id="particles"></div>
+
+<!-- Navigation Dots -->
+<div class="nav-dots" id="navDots"></div>
+
 <!-- Welcome -->
 <section>
-  <h1>Welcome</h1>
-  <button class="btn" onclick="scrollToPage(1)">Get Started</button>
+  <h1>Welcome to Next Level Web Experience</h1>
+  <p>Experience the future of web development with our premium GIG services. We create immersive, interactive websites that captivate your audience.</p>
+  <button class="btn" onclick="scrollToPage(1)">Begin Journey</button>
 </section>
 
 <!-- We Build Everything -->
 <section>
-  <h1>🔥 We Build All Types of Websites 🔥</h1>
-  <p>Let’s explore together</p>
-  <button class="btn" onclick="scrollToPage(2)">Next</button>
+  <h1>🚀 We Build Cutting-Edge Digital Experiences</h1>
+  <p>From sleek corporate sites to complex web applications, we craft solutions that drive results and engage users.</p>
+  <button class="btn" onclick="scrollToPage(2)">Explore More</button>
 </section>
 
 <!-- E-commerce Store -->
 <section id="ecommerce">
-  <h1>🛒 Demo E-Commerce Store</h1>
+  <h1>🛒 Premium E-Commerce Solutions</h1>
+  <p>Our e-commerce platforms convert visitors into customers with seamless shopping experiences.</p>
   <div class="product-grid">
     <div class="product">
-      <p>Product A</p>
-      <button class="btn" onclick="addToCart('Product A')">Add to Cart</button>
+      <h3>Pro Package</h3>
+      <p>$299</p>
+      <button class="btn" onclick="addToCart('Pro Package - $299')">Add to Cart</button>
     </div>
     <div class="product">
-      <p>Product B</p>
-      <button class="btn" onclick="addToCart('Product B')">Add to Cart</button>
+      <h3>Business Suite</h3>
+      <p>$599</p>
+      <button class="btn" onclick="addToCart('Business Suite - $599')">Add to Cart</button>
     </div>
     <div class="product">
-      <p>Product C</p>
-      <button class="btn" onclick="addToCart('Product C')">Add to Cart</button>
+      <h3>Enterprise</h3>
+      <p>$999</p>
+      <button class="btn" onclick="addToCart('Enterprise - $999')">Add to Cart</button>
+    </div>
+    <div class="product">
+      <h3>Custom Solution</h3>
+      <p>Contact Us</p>
+      <button class="btn" onclick="addToCart('Custom Solution - Contact Request')">Inquire</button>
     </div>
   </div>
 </section>
 
 <!-- Cart -->
 <div class="cart">
-  <h3>🧺 Cart</h3>
+  <h3>🛍️ Your Cart <span id="cartCount">0</span></h3>
   <ul id="cartList"></ul>
+  <button class="btn" style="width: 100%; margin-top: 10px;" onclick="checkout()">Checkout</button>
 </div>
 
 <!-- AI Chatbot -->
 <section>
-  <h1>🤖 AI Chatbot</h1>
+  <h1>🤖 Advanced AI Assistant</h1>
+  <p>Our AI solutions can handle customer inquiries 24/7, reducing support costs and improving satisfaction.</p>
   <div class="chatbox">
-    <div class="messages" id="messages"></div>
+    <div class="messages" id="messages">
+      <div class="msg bot">Bot: Hello! I'm your advanced AI assistant. How can I help you today?</div>
+    </div>
     <div>
-      <input type="text" id="userInput" placeholder="Ask something..." />
+      <input type="text" id="userInput" placeholder="Ask about our services..." onkeypress="if(event.keyCode==13) sendMessage()" />
       <button class="chat-submit" onclick="sendMessage()">Send</button>
     </div>
   </div>
 </section>
 
-<!-- Extra Sample Pages -->
-<section><h1>📱 App UI</h1><p>Modern design preview</p></section>
-<section><h1>📊 Analytics</h1><p>Live data panel concept</p></section>
-<section><h1>🎮 Game Preview</h1><p>Gaming landing UI</p></section>
-<section><h1>📃 Blog Page</h1><p>Latest post sample</p></section>
-<section><h1>📞 Contact</h1><p>Reach our team</p></section>
-
-<!-- Goodbye -->
+<!-- Battle Royale Game Preview -->
 <section>
-  <h1>👋 Goodbye</h1>
-  <p>Thanks for exploring this GIG</p>
+  <h1>🎮 Battle Royale Game Demo</h1>
+  <p>We develop immersive gaming experiences with real-time multiplayer functionality.</p>
+  
+  <div class="game-stats">
+    <div class="stat">Players: <span id="playerCount">1</span>/100</div>
+    <div class="stat">Zone: <span id="zoneSize">100%</span></div>
+    <div class="stat">Kills: <span id="killCount">0</span></div>
+    <div class="stat">Weapons: <span id="weaponCount">0</span></div>
+  </div>
+  
+  <div class="game-container" id="gameContainer">
+    <div class="player" id="player"></div>
+    <!-- Enemies and other elements will be added by JavaScript -->
+  </div>
+  
+  <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+    <button class="btn" onclick="startGame()">Start Game</button>
+    <button class="btn" onclick="resetGame()">Reset</button>
+  </div>
+</section>
+
+<!-- App UI Preview -->
+<section>
+  <h1>📱 Mobile App UI/UX</h1>
+  <p>We design intuitive mobile interfaces that users love with seamless animations and transitions.</p>
+  <div style="display: flex; justify-content: center; margin: 2rem 0;">
+    <div style="width: 300px; height: 500px; background: rgba(0,0,0,0.7); border: 2px solid cyan; border-radius: 20px; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 0; width: 100%; height: 60px; background: rgba(0, 255, 255, 0.2); display: flex; justify-content: center; align-items: center;">
+        <h3>App Header</h3>
+      </div>
+      <div style="padding: 70px 20px 20px; height: 100%; overflow-y: auto;">
+        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 10px; animation: slideIn 0.5s ease;">
+          <h4>Feature 1</h4>
+          <p>Interactive element with smooth animation</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 10px; animation: slideIn 0.7s ease;">
+          <h4>Feature 2</h4>
+          <p>Real-time data updates</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 10px; animation: slideIn 0.9s ease;">
+          <h4>Feature 3</h4>
+          <p>Customizable user settings</p>
+        </div>
+      </div>
+      <div style="position: absolute; bottom: 0; width: 100%; height: 60px; background: rgba(0, 255, 255, 0.2); display: flex; justify-content: space-around; align-items: center;">
+        <div>Home</div>
+        <div>Search</div>
+        <div>Profile</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Analytics Dashboard -->
+<section>
+  <h1>📊 Advanced Analytics Dashboard</h1>
+  <p>Real-time data visualization that helps you make informed business decisions.</p>
+  <div style="width: 100%; max-width: 800px; background: rgba(0,0,0,0.7); border: 1px solid cyan; border-radius: 10px; padding: 1rem; margin: 1rem 0;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+      <div style="background: rgba(0, 255, 255, 0.1); padding: 1rem; border-radius: 5px; height: 150px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h3>Visitors</h3>
+        <p style="font-size: 2rem; color: cyan;" id="visitorCount">0</p>
+        <p>+24% this week</p>
+      </div>
+      <div style="background: rgba(0, 255, 255, 0.1); padding: 1rem; border-radius: 5px; height: 150px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h3>Conversions</h3>
+        <p style="font-size: 2rem; color: cyan;" id="conversionCount">0</p>
+        <p>+12% this week</p>
+      </div>
+    </div>
+    <div style="height: 200px; background: rgba(0, 255, 255, 0.1); border-radius: 5px; padding: 1rem; position: relative;">
+      <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; background: cyan; border-radius: 5px; transition: all 2s ease;" id="chartBar"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section>
+  <h1>📞 Let's Build Something Amazing</h1>
+  <p>Ready to take your digital presence to the next level? Contact us today for a free consultation.</p>
+  <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%; max-width: 500px; margin: 1rem 0;">
+    <input type="text" placeholder="Your Name" style="padding: 12px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9);">
+    <input type="email" placeholder="Your Email" style="padding: 12px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9);">
+    <textarea placeholder="Your Message" style="padding: 12px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9); height: 150px;"></textarea>
+    <button class="btn" style="width: 100%;">Send Message</button>
+  </div>
 </section>
 
 <script>
+  // Navigation and scrolling
   const sections = document.querySelectorAll("section");
+  
+  // Create navigation dots
+  const navDots = document.getElementById("navDots");
+  sections.forEach((section, index) => {
+    const dot = document.createElement("div");
+    dot.className = "dot";
+    dot.onclick = () => scrollToPage(index);
+    navDots.appendChild(dot);
+  });
+  
+  // Update active dot on scroll
+  window.addEventListener("scroll", () => {
+    const fromTop = window.scrollY;
+    sections.forEach((section, index) => {
+      const rect = section.getBoundingClientRect();
+      const dots = document.querySelectorAll(".dot");
+      
+      if (rect.top <= 100 && rect.bottom >= 100) {
+        dots[index].classList.add("active");
+      } else {
+        dots[index].classList.remove("active");
+      }
+    });
+  });
+  
+  // Set first dot as active initially
+  document.querySelector(".dot").classList.add("active");
+  
   function scrollToPage(index) {
     if (sections[index]) {
       sections[index].scrollIntoView({ behavior: 'smooth' });
     }
   }
 
+  // Create floating particles
+  const particlesContainer = document.getElementById("particles");
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.top = `${Math.random() * 100}%`;
+    particle.style.animationDelay = `${Math.random() * 15}s`;
+    particle.style.opacity = Math.random();
+    particlesContainer.appendChild(particle);
+  }
+
+  // Shopping cart functionality
   let cart = [];
+  
   function addToCart(product) {
     cart.push(product);
     updateCart();
+    
+    // Add animation
+    const btn = event.target;
+    btn.textContent = "Added!";
+    btn.style.background = "#00ff88";
+    setTimeout(() => {
+      btn.textContent = product.includes("Contact") ? "Inquire" : "Add to Cart";
+      btn.style.background = "cyan";
+    }, 1000);
   }
-
+  
   function updateCart() {
-    const cartList = document.getElementById('cartList');
+    const cartList = document.getElementById("cartList");
+    const cartCount = document.getElementById("cartCount");
     cartList.innerHTML = '';
-    cart.forEach((item, i) => {
-      const li = document.createElement('li');
-      li.textContent = item;
+    
+    // Group items and count quantities
+    const itemCounts = {};
+    cart.forEach(item => {
+      itemCounts[item] = (itemCounts[item] || 0) + 1;
+    });
+    
+    // Display grouped items
+    Object.keys(itemCounts).forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item} x${itemCounts[item]}`;
       cartList.appendChild(li);
     });
+    
+    cartCount.textContent = cart.length;
+  }
+  
+  function checkout() {
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+    
+    alert(`Thank you for your purchase!\n\nItems:\n${cart.join("\n")}\n\nTotal: $${calculateTotal()}`);
+    cart = [];
+    updateCart();
+  }
+  
+  function calculateTotal() {
+    return cart.reduce((total, item) => {
+      const priceMatch = item.match(/\$(\d+)/);
+      if (priceMatch) return total + parseInt(priceMatch[1]);
+      return total;
+    }, 0);
   }
 
+  // Enhanced AI Chatbot
   function sendMessage() {
     const input = document.getElementById("userInput");
     const msgBox = document.getElementById("messages");
-
-    if (!input.value) return;
-
+    
+    if (!input.value.trim()) return;
+    
+    // Add user message
     const userMsg = document.createElement("div");
     userMsg.className = "msg user";
     userMsg.textContent = "You: " + input.value;
     msgBox.appendChild(userMsg);
-
-    const botMsg = document.createElement("div");
-    botMsg.className = "msg bot";
     
-    const responses = {
-      "hi": "Hello there!",
-      "what can you do": "I can simulate an AI chatbot, and show web previews!",
-      "who are you": "I’m your GIG-level assistant bot 😎",
-      "bye": "Goodbye! See you soon.",
-    };
-
-    let reply = responses[input.value.toLowerCase()] || "I'm still learning... 🤖";
+    // Process input
+    const inputText = input.value.toLowerCase();
+    let reply = generateAIResponse(inputText);
+    
+    // Add bot message after a short delay
     setTimeout(() => {
-      botMsg.textContent = "Bot: " + reply;
+      const botMsg = document.createElement("div");
+      botMsg.className = "msg bot";
+      botMsg.innerHTML = "Bot: " + reply;
       msgBox.appendChild(botMsg);
       msgBox.scrollTop = msgBox.scrollHeight;
-    }, 500);
-
+    }, 500 + Math.random() * 500);
+    
     input.value = '';
+    input.focus();
   }
-</script>
-
-</body>
-</html>
+  
+  function generateAIResponse(input) {
+    // Expanded responses with more natural language
+    const responses = {
+      "hi|hello|hey": "Hello there! 👋 How can I assist you today?",
+      "what can you do|features": "I can help with: <br>- Website development inquiries<br>- E-commerce solutions<br>- Game development<br>- AI integration<br>- General tech questions<br>What interests you most?",
+      "who are you|about": "I'm an advanced AI assistant created by GIG developers to showcase our capabilities in natural language processing and conversational interfaces.",
+      "bye|goodbye": "Goodbye! Feel free to return if you have more questions. Have a great day! ✨",
+      "price|cost|how much": "Our pricing varies based on project requirements. Our basic packages start at $299. Would you like more specific information?",
+      "ecommerce|shop": "Our e-commerce solutions include:<br>- Secure payment integration<br>- Inventory management<br>- Custom product displays<br>- AI product recommendations",
+      "game|gaming": "We develop immersive gaming experiences including:<br>- Web-based games<br>- Mobile games<br>- Multiplayer systems<br>- Battle royale mechanics (like the demo above)",
+      "contact|reach": "You can contact us through the form at the bottom of this page or email us at contact@gigdev.com",
+      "time|date": `The current time is ${new Date().toLocaleTimeString()} and the date is ${new Date().toLocaleDateString()}.`,
+      "thanks|thank you": "You're welcome! Is there anything else I can help with? 😊",
+      "default": "I'm constantly learning! That's an interesting question. Could you rephrase it or ask about our
